@@ -27,16 +27,21 @@ export const purchaseBurgerStart = () => {
   };
 };
 export const purchaseBurger = (orderData, token) => {
-  return async (dispatch) => {
-    dispatch(purchaseBurgerStart());
-    const url = `/orders.json?auth=${token.replace(/['"]+/g, "").trim()}`;
-       try {
-      const response = await axios.post(url, orderData);
-      dispatch(purchaseBurgerSuccess(response.data.name, orderData));
-    } catch (error) {
-      dispatch(purchaseBurgerFail(error));
-    }
-  };
+  // return async (dispatch) => {
+  //   dispatch(purchaseBurgerStart());
+  //   const url = `/orders.json?auth=${token.replace(/['"]+/g, "").trim()}`;
+  //      try {
+  //     const response = await axios.post(url, orderData);
+  //     dispatch(purchaseBurgerSuccess(response.data.name, orderData));
+  //   } catch (error) {
+  //     dispatch(purchaseBurgerFail(error));
+  //   }
+  // };
+  return{
+    type:actionTypes.PURCHASE_BURGER,
+    orderData:orderData,
+    token:token
+  }
 };
 export const orderFetchSuccess = (order) => {
   return {
@@ -57,18 +62,23 @@ export const orderFetchStart = () => {
   };
 };
 export const orderFetch = (token,userId) => {
-  return async (dispatch) => {
-    dispatch(orderFetchStart());
-    const url = `/orders.json?auth=${token.replace(/['"]+/g, "").trim()}&orderBy="userId"&equalTo="${userId}"`;
-    try {
-      const res = await axios.get(url);
-      const fetchOrderData = [];
-      for (let key in res.data) {
-        fetchOrderData.push({ ...res.data[key], id: key });
-      }
-      dispatch(orderFetchSuccess(fetchOrderData));
-    } catch (error) {
-      dispatch(orderFetchFail(error));
-    }
-  };
+  // return async (dispatch) => {
+  //   dispatch(orderFetchStart());
+  //   const url = `/orders.json?auth=${token.replace(/['"]+/g, "").trim()}&orderBy="userId"&equalTo="${userId}"`;
+  //   try {
+  //     const res = await axios.get(url);
+  //     const fetchOrderData = [];
+  //     for (let key in res.data) {
+  //       fetchOrderData.push({ ...res.data[key], id: key });
+  //     }
+  //     dispatch(orderFetchSuccess(fetchOrderData));
+  //   } catch (error) {
+  //     dispatch(orderFetchFail(error));
+  //   }
+  // };
+  return{
+      type:actionTypes.ORDER_FETCH_INIT,
+      token:token,
+      userId:userId
+  }
 };

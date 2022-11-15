@@ -27,16 +27,6 @@ function BurgerBuilder({
   });
 
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
-
-  // const onAddIngredient = (ingsName) =>
-  //   dispatch(actions.addIngredients(ingsName));
-  // const onRemoveIngredient = (ingsName) =>
-  //   dispatch(actions.removeIngredients(ingsName));
-  // const onInitIngredient = () => dispatch(actions.initIngredient());
-  // const onPurchaseInit = () => dispatch(actions.purchaseInit());
-  // const onSetAuthNavigatePath = (path) =>
-  //   dispatch(actions.setAuthNavigateToPath(path));
 
   useEffect(() => {
     onInitIngredient();
